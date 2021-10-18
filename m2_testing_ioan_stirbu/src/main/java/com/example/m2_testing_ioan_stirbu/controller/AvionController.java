@@ -14,7 +14,7 @@ public class AvionController {
 
 
     //Creando Repositorio
-    AvionesRepository avionesRepository;
+    private AvionesRepository avionesRepository;
 
 
     public AvionController(AvionesRepository avionesRepository){

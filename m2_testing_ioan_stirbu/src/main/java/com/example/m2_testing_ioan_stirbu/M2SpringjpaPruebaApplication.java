@@ -2,6 +2,7 @@ package com.example.m2_testing_ioan_stirbu;
 
 import com.example.m2_testing_ioan_stirbu.entities.Avion;
 import com.example.m2_testing_ioan_stirbu.entities.Nave;
+import com.example.m2_testing_ioan_stirbu.enumeradores.AvionesE;
 import com.example.m2_testing_ioan_stirbu.enumeradores.DaysNave;
 import com.example.m2_testing_ioan_stirbu.repositories.AvionesRepository;
 import com.example.m2_testing_ioan_stirbu.repositories.NavesRepository;
@@ -32,7 +33,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Scanner sc = new Scanner(System.in);
+
 
         mensaje();//Mensaje de bienvenida a la app
 
@@ -56,7 +57,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
     }
 
 
-    private void elegirOpc() {
+    private void elegirOpc() throws InterruptedException {
 
         System.out.println("Por favor seleccione una Base de datos: elige del (1 o 2) para poder continuar con la operacion");
         int opc = sc.nextInt();
@@ -145,7 +146,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
 
                 }
 
-            } catch (IllegalArgumentException | InterruptedException  | IllegalStateException  e) {
+            } catch (IllegalArgumentException | InterruptedException | IllegalStateException e) {
                 e.printStackTrace();
             }
 
@@ -235,12 +236,11 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
                 salir = true;
 
             } catch (InputMismatchException e) {
-               e.printStackTrace(System.out);
+                e.printStackTrace(System.out);
                 System.out.println("No se deben de meter letras solo numeros gracias");
             }
         }
     }
-
 
 
     public void actualizarNaves() {
@@ -249,7 +249,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
         boolean exist = false;
         while (!exist) {
 
-            System.out.println("Deseas actualizar una nave elige opcion (1)-->Si (2)-->(No):");
+            System.out.println("Deseas actualizar una nave? elige opcion (1)-->Si (2)-->(No):");
             int opc = sc.nextInt();
             if (opc == 1) {
                 System.out.println("Si deseo actualizar una nave" + "\n");
@@ -313,7 +313,6 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
         }
 
 
-
     }
 
 
@@ -325,13 +324,13 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
             System.out.println("Escribe (true)");
             boolean confirmar = sc.nextBoolean();
             if (confirmar)
-            System.out.println("Dime un id para asegurar");
+                System.out.println("Dime un id para asegurar");
             Long id = sc.nextLong();
-            if(navesRepository.existsById(id)) {
+            if (navesRepository.existsById(id)) {
                 navesRepository.deleteAll();
                 System.out.println("Base de datos de naves eliminada correctamente");
                 confirmar = true;
-            }else{
+            } else {
                 System.out.println("No existe la DB para eliminar ");
             }
 
@@ -347,38 +346,33 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Hola elige una nave (por favor: Escriba el nombre gracias)" +
-                                     "\nAtlantis" +
-                                    "\nDiscovery" +
-                                    "\nLeonov" +
-                                    "\nEnterprise" +
-                                    "\nGalactica");
+                "\nAtlantis" +
+                "\nDiscovery" +
+                "\nLeonov" +
+                "\nEnterprise" +
+                "\nGalactica");
 
         String nombre = sc.next();
         abrirApp();
         if ("Atlantis".equalsIgnoreCase(nombre)) {
             System.out.println("Has elegido la nave Atlantis");
             datosAtlantis();
-        }else if("Discovery".equalsIgnoreCase(nombre)){
+        } else if ("Discovery".equalsIgnoreCase(nombre)) {
             System.out.println("Has elegido la nave Discovery");
             datosDiscovery();
-        }else if("Leonov".equalsIgnoreCase(nombre)){
+        } else if ("Leonov".equalsIgnoreCase(nombre)) {
             System.out.println("Has elegido la nave Leonov");
             datosLeonov();
-
-        }else if ("Enterprise".equalsIgnoreCase(nombre)){
+        } else if ("Enterprise".equalsIgnoreCase(nombre)) {
             System.out.println("Has elegido la nave Enterprise");
             datosEnterprise();
-        }else if ("Galactica".equalsIgnoreCase(nombre)){
+        } else if ("Galactica".equalsIgnoreCase(nombre)) {
             System.out.println("Has elegido la nave Galactica");
             datosGalactica();
         }
 
 
-
-
     }
-
-
 
 
     private void datosAtlantis() {
@@ -427,106 +421,294 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
     }
 
 
-
-
     //AQUI TERMINA EL CODIGO DE NAVES
 
 
-    //TODO empezar con el menu de aviones
-    public void mostrarMenuAviones() {
+    public void mostrarMenuAviones()  {
 
-        System.out.println("1.Crear la DB de aviones ");
-        System.out.println("2.Leer datos en la DB de aviones");
-        System.out.println("3.Comida gratis en el vuelo?");
-        System.out.println("3.Actualizar datos en la DB de aviones");
-        System.out.println("4.Eliminar datos en la DB de aviones");
-        System.out.println("5.Salir de la DB de de aviones");
-        System.out.println("Elige una opcion:");
 
-        int opc = sc.nextInt();
 
         boolean salir = false;
-        while (!salir) {
-            switch (opc) {
-                case 1:
-                    System.out.println("Has elegido la opcion 1: Creacion de la Base de datos de aviones");
-                    crearAviones();
-                    break;
-                case 2:
-                    System.out.println("Has elegido la opcion 2: Leer datos en la Base de datos de aviones");
-                    leerAviones();
-                    break;
-                case 3:
-                    System.out.println("Has elegido la opcion 3: Actualizar datos en la Base de datos de aviones");
-                    actualizarAviones();
-                    break;
-                case 4:
-                    System.out.println("Has elegido la opcion 4: Eliminar datos de la Base de datos de aviones");
-                    eliminarAviones();
-                    break;
-                case 5:
-                    System.out.println("Has elegido la opcion 5: Salir de la Base de datos de aviones");
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Has elegido una opcion no valida!");
+        try {
+
+            while (true) {
+
+                System.out.println("-------Menu DB Aviones-------");
+                System.out.print("1.Ver datos de la DB de aviones" +
+                        "\n2.Comida gratis en el vuelo?" +
+                        "\n3.Crear la DB de aviones " +
+                        "\n4.Actualizar datos en la DB de aviones" +
+                        "\n5.Eliminar un avion en la DB de aviones" +
+                        "\n6.Eliminar todas los datos de la DB de aviones" +
+                        "\n7.Salir de la DB de aviones\n" +
+                        "Elige una opcion:");
+
+                int opc = sc.nextInt();
+
+
+
+
+                switch (opc) {
+                    case 1:
+                        System.out.println("Has elegido la opcion 1:Ver datos de la DB de aviones\n");
+                        leerAviones();
+                        break;
+                    case 2:
+                        System.out.println("Has elegido la opcion 2: Comida gratis en el vuelo?\n");
+                        ComidaAvion();
+                        break;
+                    case 3:
+                        System.out.println("Has elegido la opcion 3: Crear la DB de aviones\n");
+                        crearAviones();
+                        break;
+                    case 4:
+                        System.out.println("Has elegido la opcion 4: Actualizar datos en la DB de aviones\n");
+                        actualizarAviones();
+                        break;
+                    case 5:
+                        System.out.println("Has elegido la opcion 5: Eliminar un avion en la DB de aviones\n");
+                        eliminarUnAvion();
+                        break;
+                    case 6:
+                        System.out.println("Eliminar todas los datos de la DB de aviones\n");
+                        eliminarAviones();
+                        break;
+                    case 7:
+                        System.out.println("Salir de la DB de aviones");
+                        System.out.println("Seguro que quieres salir de esta base de datos? pulsa (1)-->Si (2)-->No");
+                        opc = sc.nextInt();
+                        sc.nextLine();
+                        if (opc == 1) {
+                            salir = true;
+                            System.out.println("Si quiero salir de la base de datos y de la App");
+                            System.out.println("Hasta pronto y muchas gracias por entrar a esta DB");
+                            System.exit(0);
+                        } else if (opc == 2) {
+                            salir = false;
+                            System.out.println("No, quiero seguir en esta base de datos gracias!");
+
+                        }
+                        break;
+                    default:
+                        System.out.println("Has elegido una opcion no valida!");
+
+                }
 
             }
 
+        } catch (IllegalArgumentException | InterruptedException | IllegalStateException e) {
+            e.printStackTrace();
         }
-
-
     }
 
-    private void crearAviones() {
-        Avion av1 = new Avion(null, "Airbus 319", 23.3, 156, 7.200);
-        Avion av2 = new Avion(null, "Airbus 330", 132.4, 293, 7.400);
-        Avion av3 = new Avion(null, "Boeing 777", 162.7, 550, 17.370);
-
-        avionesRepository.save(av1);
-        avionesRepository.save(av2);
-        avionesRepository.save(av3);
-
-    }
 
     private void leerAviones() {
-
-        //Consultar, recuperar, buscar del objeto naves, leer
         List<Avion> aviones = avionesRepository.findAll();
-        if (!aviones.isEmpty()) {
-            System.out.println(aviones);
+
+        if (aviones.isEmpty()) {
+            System.out.println("No se han encontrado aviones en la DB!");
+            System.out.println("Para eso debera crear un avion  con la opcion 3  ");
         } else {
-            System.out.println("No se han encontrado naves en la DB!");
+            System.out.println(aviones);
+
         }
 
-        //System.out.println(aviones);
+
+    }
+
+
+    private void ComidaAvion() throws InterruptedException {
+
+        System.out.println("Hola elige un avion (por favor: Escriba el nombre sin espacios gracias)" +
+                "\nAirbusA320" +
+                "\nBoeing737" +
+                "\nBoeing777" +
+                "\nBoeing727" +
+                "\nAirbusA330");
+
+        String nombre = sc.next();
+        abrirApp();
+        if ("AirbusA320".equalsIgnoreCase(nombre)) {
+            System.out.println("Has elegido: " + AvionesE.AirbusA320);
+            comidaAvion1();
+        } else if ("Boeing737".equalsIgnoreCase(nombre)) {
+            System.out.println("Has elegido: " + AvionesE.Boeing737);
+            comidaAvion2();
+        } else if ("Boeing777".equalsIgnoreCase(nombre)) {
+            System.out.println("Has elegido: " + AvionesE.Boeing777);
+            comidaAvion3();
+
+        } else if ("Boeing727".equalsIgnoreCase(nombre)) {
+            System.out.println("Has elegido: " + AvionesE.Boeing727);
+            comidaAvion4();
+        } else if ("AirbusA330".equalsIgnoreCase(nombre)) {
+            System.out.println("Has elegido: " + AvionesE.AirbusA330);
+            comidaAvion5();
+        }
+
+    }
+
+
+    private void comidaAvion1() {
+        System.out.println("Desayuno: Galletas con Leche\n" +
+                "Almuerzo: Arroz de marisco\n" +
+                "Cena: Ensalada mix\n");
+    }
+
+    private void comidaAvion2() {
+        System.out.println("Desayuno: Cereales\n" +
+                "Almuerzo: Arroz Negro\n" +
+                "Cena: Espaguettis\n");
+    }
+
+    private void comidaAvion3() {
+        System.out.println("Desayuno: Galletas con Leche\n" +
+                "Almuerzo: Arroz de marisco\n" +
+                "Cena: Ensalada mix\n");
+    }
+
+    private void comidaAvion4() {
+        System.out.println("Desayuno: Un colocao con galletas de chocolate\n" +
+                "Almuerzo: Arroz de Bogavante\n" +
+                "Cena: Frijoles\n");
+    }
+
+    private void comidaAvion5() {
+        System.out.println("Desayuno: Aguacate con atun y una manzana\n" +
+                "Almuerzo: Salmon\n" +
+                "Cena: un kebab\n");
+
+    }
+
+
+    private void crearAviones() {
+        boolean salir = false;
+        while (!salir) {
+            try {
+                System.out.println("Dime el nombre del avion:  por favor pongalo separado por -");
+                String nombre = sc.next();
+                sc.nextLine();
+                System.out.println("Dime el numero de carga del avion");
+                Double carga = sc.nextDouble();
+                sc.nextLine();
+                System.out.println("Dime el numero de pasajeros que tiene el avion");
+                Integer pasajeros = sc.nextInt();
+                sc.nextLine();
+                System.out.println("Dime la velocidad que tiene el avion:");
+                Double alcance = sc.nextDouble();
+                sc.nextLine();
+                Avion avion1 = new Avion(null, nombre, carga, pasajeros, alcance);
+                avionesRepository.save(avion1);
+                System.out.println("Avion creado correctamente en la DB");
+                salir = true;
+
+            } catch (InputMismatchException e) {
+                e.printStackTrace(System.out);
+                System.out.println("No se deben de meter letras solo numeros gracias");
+            }
+        }
+
     }
 
 
     private void actualizarAviones() {
 
+        boolean exist = false;
+        while (!exist) {
+
+            System.out.println("Deseas actualizar un avion? elige opcion (1)-->Si (2)-->(No):");
+            int opc = sc.nextInt();
+            if (opc == 1) {
+                System.out.println("Si deseo actualizar un avion" + "\n");
+
+                System.out.println("Dime el id del avion :");
+                Long id = sc.nextLong();
+                Optional<Avion> avionOpt = avionesRepository.findById(id);
+                if (avionOpt.isEmpty()) {
+                    System.out.println("Lo sentimos pero no existe el avion que pusiste");
+                    continue;
+                }
+
+                Avion avion = avionOpt.get();
+
+                System.out.println("Dime el nombre del avion (actual: " + avion.getNombre() + ")");
+                String nombre = sc.next();
+                avion.setNombre(nombre);
+                System.out.println("Dime la carga del avion (actual:" + avion.getCarga() + ")");
+                Double carga = sc.nextDouble();
+                sc.nextLine();
+                avion.setCarga(carga);
+                System.out.println("Dime el numero de pasajeros (actual: " + avion.getPasajeros() + ")");
+                Integer pasajeros = sc.nextInt();
+                sc.nextLine();
+                avion.setPasajeros(pasajeros);
+                System.out.println("Dime la velocidad del avion que puede alcanzar (actual: " + avion.getAlcance() + ")");
+                Double alcance = sc.nextDouble();
+                sc.nextLine();
+                avion.setAlcance(alcance);
+
+                avionesRepository.save(avion);
+                System.out.println("Avion actualizado exitosamente");
+
+            } else if (opc == 2) {
+                exist = true;
+                System.out.println("Estoy pensando todavia si actualizar este avion ");
+            }
+
+
+        }
+
+
+    }
+
+
+    private void eliminarUnAvion() {
+
+        System.out.println("Deseas eliminar un avion por id? elige opcion (1)-->Si (2)-->(No):");
         int opc = sc.nextInt();
-        System.out.println("Deseas actualizar un avion elige opcion (1)-->Si (2)-->(No):");
         if (opc == 1) {
-            System.out.println("Si deseo actualizar un avion");
-            System.out.println("Dime el codigo del avion");
-            //TODO preguntar usuario el codigo de la nave que quiere cambiar o actualizar
-            Avion av1 = new Avion(null, "Airbus 319", 23.3, 156, 7.200);
-            av1.setId(4L);
-            avionesRepository.save(av1);
+            System.out.println("Dime el id del avion que quieres eliminar por favor");
+            Long id = sc.nextLong();
+
+            boolean exists = avionesRepository.existsById(id);
+
+            if (exists) {
+                avionesRepository.deleteById(id);
+                System.out.println("Avion con id " + id + " borrado");
+                System.out.println("Avion eliminado correctamente");
+            } else {
+                System.out.println("No existe el avion con el id " + id);
+
+            }
 
         } else if (opc == 2) {
-            System.out.println("No deseo actualizar una nave gracias!");
+            System.out.println("No deseo eliminar ningun avion");
         }
 
 
     }
 
     private void eliminarAviones() {
-        //Borrar en la DB
-        //TODO preguntar al usuario si realmente quiere eliminar ese avion
-        Avion av1 = new Avion(null, "Airbus 319", 23.3, 156, 7.200);
-        avionesRepository.delete(av1);
+
+        System.out.println("Estas seguro que quieres borrar la DB de aviones (Si-->(1) o (2)-->No)");
+        int opc = sc.nextInt();
+        if (opc == 1) {
+            System.out.println("Escribe (true)");
+            boolean confirmar = sc.nextBoolean();
+            if (confirmar)
+                System.out.println("Dime un id para asegurar");
+            Long id = sc.nextLong();
+            if (avionesRepository.existsById(id)) {
+                avionesRepository.deleteAll();
+                System.out.println("Base de datos de aviones eliminada correctamente");
+                confirmar = true;
+            } else {
+                System.out.println("No existe la DB para eliminar ");
+            }
+
+        } else if (opc == 2) {
+            System.out.println("Todavia estoy pensando si  eliminar la DB de aviones ");
+        }
 
     }
 

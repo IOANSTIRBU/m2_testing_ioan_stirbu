@@ -76,6 +76,6 @@ public class Avion {
                 ", carga=" + carga +
                 ", pasajeros=" + pasajeros +
                 ", alcance=" + alcance +
-                '}';
+                '}' + "\n";
     }
 }

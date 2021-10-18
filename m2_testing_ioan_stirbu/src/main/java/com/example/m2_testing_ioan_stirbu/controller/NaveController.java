@@ -10,7 +10,7 @@ import java.util.List;
 public class NaveController {
 
     //Creando Repositorio
-    NavesRepository navesRepository;
+    private NavesRepository navesRepository;
 
     public NaveController(NavesRepository navesRepository){
         this.navesRepository = navesRepository;
