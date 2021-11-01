@@ -49,7 +49,7 @@ public class AvionController {
     //Put
     @PutMapping("/aviones")
     public void update(@RequestBody Avion avion){
-        if(avion.getId() == null && avionesRepository.existsById(avion.getId()))
+        if(avion.getId() != null && avionesRepository.existsById(avion.getId()))
             avionesRepository.save(avion);
     }
 

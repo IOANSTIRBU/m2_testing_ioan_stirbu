@@ -138,7 +138,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
                         break;
                     case 7:
                         System.out.println("Has elegido la opcion 7: Abrir tienda de naves\n");
-                        MostradorNaves();
+                        mostradorNaves();
                         break;
 
                     default:
@@ -329,7 +329,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
             if (navesRepository.existsById(id)) {
                 navesRepository.deleteAll();
                 System.out.println("Base de datos de naves eliminada correctamente");
-                confirmar = true;
+
             } else {
                 System.out.println("No existe la DB para eliminar ");
             }
@@ -341,7 +341,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
 
     }
 
-    private void MostradorNaves() throws InterruptedException {
+    private void mostradorNaves() throws InterruptedException {
 
         Scanner sc = new Scanner(System.in);
 
@@ -426,9 +426,6 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
 
     public void mostrarMenuAviones()  {
 
-
-
-        boolean salir = false;
         try {
 
             while (true) {
@@ -444,9 +441,6 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
                         "Elige una opcion:");
 
                 int opc = sc.nextInt();
-
-
-
 
                 switch (opc) {
                     case 1:
@@ -479,14 +473,11 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
                         opc = sc.nextInt();
                         sc.nextLine();
                         if (opc == 1) {
-                            salir = true;
                             System.out.println("Si quiero salir de la base de datos y de la App");
                             System.out.println("Hasta pronto y muchas gracias por entrar a esta DB");
                             System.exit(0);
                         } else if (opc == 2) {
-                            salir = false;
                             System.out.println("No, quiero seguir en esta base de datos gracias!");
-
                         }
                         break;
                     default:
@@ -701,7 +692,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
             if (avionesRepository.existsById(id)) {
                 avionesRepository.deleteAll();
                 System.out.println("Base de datos de aviones eliminada correctamente");
-                confirmar = true;
+
             } else {
                 System.out.println("No existe la DB para eliminar ");
             }
