@@ -137,7 +137,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
                         }
                         break;
                     case 7:
-                        System.out.println("Has elegido la opcion 7: Abrir tienda de naves\n");
+                        System.out.println("Has elegido la opcion 7: Abrir el mostrador de naves\n");
                         mostradorNaves();
                         break;
 
