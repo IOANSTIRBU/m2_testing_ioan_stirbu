@@ -449,7 +449,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
                         break;
                     case 2:
                         System.out.println("Has elegido la opcion 2: Comida gratis en el vuelo?\n");
-                        ComidaAvion();
+                        comidaAvion();
                         break;
                     case 3:
                         System.out.println("Has elegido la opcion 3: Crear la DB de aviones\n");
@@ -508,7 +508,7 @@ public class M2SpringjpaPruebaApplication implements CommandLineRunner {
     }
 
 
-    private void ComidaAvion() throws InterruptedException {
+    private void comidaAvion() throws InterruptedException {
 
         System.out.println("Hola elige un avion (por favor: Escriba el nombre sin espacios gracias)" +
                 "\nAirbusA320" +
